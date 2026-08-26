@@ -1,0 +1,82 @@
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 92px; }
+
+/* ══ Reveal on scroll ══ */
+.rv { opacity: 0; transform: translateY(26px); transition: opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.rv.on { opacity: 1; transform: none; }
+.rv-d1 { transition-delay: 0.12s; }
+.rv-d2 { transition-delay: 0.24s; }
+.rv-d3 { transition-delay: 0.36s; }
+
+/* ══ Grid background ══ */
+.gridbg {
+  background-image:
+    linear-gradient(rgba(14, 87, 148, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 87, 148, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* ══ Floaty animations ══ */
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.floaty { animation: floaty 5s ease-in-out infinite; }
+.floaty2 { animation: floaty 6.5s ease-in-out infinite; animation-delay: 1.2s; }
+
+/* ══ Pulse dot ══ */
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(0, 147, 154, 0.45); } 70% { box-shadow: 0 0 0 9px rgba(0, 147, 154, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 147, 154, 0); } }
+.pulse-dot { animation: pulseDot 2s infinite; }
+
+@keyframes blinkDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+.blink { animation: blinkDot 1.6s infinite; }
+
+/* ══ Check icon ══ */
+.checkicon {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #E3F6F7;
+  color: #00706F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ══ Tabs ══ */
+.tabbtn {
+  transition: all 0.25s;
+  padding: 0.75rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid oklch(0.9 0 0);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: white;
+}
+.tabbtn[data-state="active"] {
+  background: #0E5794;
+  color: #fff;
+  box-shadow: 0 12px 30px -12px rgba(14, 87, 148, 0.55);
+}
+[hlmTabsList] { display: flex; flex-wrap: wrap; gap: 0.75rem; background: transparent; }
+
+/* ══ ECG animation ══ */
+.ecg-path { stroke-dasharray: 150 850; animation: ecgmove 5s linear infinite; }
+@keyframes ecgmove { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: -1000; } }
+.ecg-base { opacity: 0.15; }
+
+/* ══ Bar chart ══ */
+.bar { transform: scaleY(0); transform-origin: bottom; transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.bars-on .bar { transform: scaleY(1); }
+
+/* ══ Stagger items ══ */
+.stagger-item { opacity: 0; transform: translateX(-8px); animation: rowIn 0.5s forwards; }
+@keyframes rowIn { to { opacity: 1; transform: none; } }
+
+.logline { animation: logIn 0.45s ease; }
+@keyframes logIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+
+.sig-badge { transition: all 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ecg-path { animation: none; }
+  .bar { transform: scaleY(1); }
+}

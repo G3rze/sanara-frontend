@@ -1,0 +1,841 @@
+<div class="bg-bg text-ink antialiased font-sans">
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <header
+    [class.scrolled]="scrolled()"
+    class="fixed top-0 inset-x-0 z-50 bg-transparent transition-all duration-300"
+    [class.bg-bg/92]="scrolled()"
+    [class.backdrop-blur-md]="scrolled()"
+    [class.shadow-lift]="scrolled()"
+  >
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 h-[76px] flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5">
+        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center shadow-soft">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z" fill="#fff" opacity=".92"/><path d="M8 12h2.2l1.1-2.4 1.6 4.4 1.1-2H16" stroke="#0E5794" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="leading-tight">
+          <span class="font-800 font-extrabold text-xl tracking-tight">Sanara<span class="text-primary">Studio</span></span>
+          <span class="hidden sm:block text-[10px] uppercase tracking-[.2em] text-soft font-semibold">Salud digital confiable</span>
+        </div>
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[15px] font-medium text-ink/70">
+        @for (link of navLinks; track link.href) {
+          <a [href]="link.href" class="hover:text-primary transition">{{ link.label }}</a>
+        }
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="#planes" class="text-sm font-semibold text-primary hover:text-primary-bright px-4 py-2.5 rounded-xl border border-primary/25 hover:border-primary/50 transition">Ver planes</a>
+        <a href="#demo" class="text-sm font-semibold text-white bg-primary hover:bg-primary-bright px-5 py-2.5 rounded-xl shadow-soft transition">Agendar demo</a>
+      </div>
+      <button
+        (click)="mobileMenuOpen.set(!mobileMenuOpen())"
+        class="lg:hidden w-11 h-11 rounded-xl border border-line flex items-center justify-center"
+        aria-label="Menú"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    @if (mobileMenuOpen()) {
+      <div class="lg:hidden bg-white border-t border-line shadow-lift">
+        <div class="px-6 py-5 flex flex-col gap-4 text-[15px] font-medium">
+          @for (link of navLinks; track link.href) {
+            <a [href]="link.href" class="hover:text-primary transition" (click)="closeMobile()">{{ link.label }}</a>
+          }
+          <a href="#demo" class="bg-primary text-white text-center rounded-xl py-3 font-semibold" (click)="closeMobile()">Agendar demo</a>
+        </div>
+      </div>
+    }
+  </header>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="relative gridbg pt-[130px] pb-20 lg:pt-[150px] lg:pb-24 overflow-hidden">
+    <div class="absolute -top-44 -right-44 w-[560px] h-[560px] rounded-full bg-primary-soft blur-3xl pointer-events-none"></div>
+    <div class="absolute top-40 -left-44 w-[420px] h-[420px] rounded-full bg-accent-soft blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-[1fr_1.1fr] gap-14 items-center relative">
+      <div>
+        <div class="rv inline-flex items-center gap-2 bg-white border border-primary/15 rounded-full pl-3 pr-4 py-1.5 shadow-card">
+          <span class="w-2.5 h-2.5 rounded-full bg-accent pulse-dot"></span>
+          <span class="text-xs font-semibold text-primary tracking-wide uppercase">Ley de Protección de Datos · HCE · FHIR · GDPR</span>
+        </div>
+        <h1 class="rv rv-d1 font-extrabold text-4xl sm:text-5xl xl:text-[3.5rem] leading-[1.08] tracking-tight mt-6">
+          La historia clínica electrónica que <span class="text-primary">blinda a su hospital</span> y da confianza a sus pacientes.
+        </h1>
+        <p class="rv rv-d2 mt-6 text-lg text-soft leading-relaxed max-w-xl">
+          Sanara Studio convierte el cumplimiento de la ley en tranquilidad para la dirección: datos de pacientes protegidos con cifrado de grado bancario, firmas con validez legal y evidencia de auditoría lista en minutos — no en semanas.
+        </p>
+        <div class="rv rv-d3 mt-9 flex flex-wrap gap-4">
+          <a href="#demo" class="bg-primary hover:bg-primary-bright text-white font-semibold px-8 py-4 rounded-2xl shadow-lift transition inline-flex items-center gap-2">
+            Agendar demo ejecutiva
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#planes" class="bg-white border border-line hover:border-primary/40 text-ink font-semibold px-8 py-4 rounded-2xl shadow-card transition">Ver planes y precios</a>
+        </div>
+        <div class="rv rv-d3 mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-soft font-medium">
+          <span class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00939A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Sin inversión en servidores</span>
+          <span class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00939A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Implementación acompañada</span>
+          <span class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00939A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Capacitación incluida</span>
+        </div>
+      </div>
+
+      <!-- ═══ MOCKUP DINÁMICO ═══ -->
+      <div class="rv rv-d2 relative">
+        <div class="rounded-3xl overflow-hidden shadow-lift border border-line bg-white">
+          <!-- chrome -->
+          <div class="flex items-center gap-2 px-5 py-3.5 bg-white border-b border-line">
+            <span class="w-3 h-3 rounded-full bg-danger/70"></span>
+            <span class="w-3 h-3 rounded-full bg-[#D9A441]"></span>
+            <span class="w-3 h-3 rounded-full bg-accent/70"></span>
+            <div class="ml-3 flex-1 max-w-[260px] bg-muted/60 rounded-lg text-[11px] text-soft px-3 py-1.5 truncate">app.sanara-studio.com</div>
+          </div>
+          <div class="flex">
+            <!-- sidebar -->
+            <div class="hidden sm:flex flex-col items-center gap-1.5 w-14 py-5 bg-navy text-white/50">
+              <div class="w-9 h-9 rounded-lg bg-primary-bright flex items-center justify-center text-white mb-3">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z" fill="#fff"/></svg>
+              </div>
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-white/10 text-white"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-white/10 transition"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-white/10 transition"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></div>
+              <div class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-white/10 transition"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z"/></svg></div>
+            </div>
+            <!-- main -->
+            <div class="flex-1 p-5 min-w-0">
+              <div class="flex items-center justify-between gap-3 flex-wrap">
+                <p class="font-bold text-[15px]">Panel de control</p>
+                <div class="flex gap-1.5 bg-muted/70 rounded-xl p-1">
+                  @for (v of views; track v) {
+                    <button
+                      class="text-[11px] font-bold px-3 py-1.5 rounded-lg transition-all duration-250"
+                      [class.active]="activeView() === v"
+                      [class.bg-primary]="activeView() === v"
+                      [class.text-white]="activeView() === v"
+                      [class.shadow-md]="activeView() === v"
+                      [class.text-soft]="activeView() !== v"
+                      (click)="setView(v)"
+                    >
+                      @if (v === 'v-panel') { Panel }
+                      @else if (v === 'v-agenda') { Agenda }
+                      @else { Auditoría }
+                    </button>
+                  }
+                </div>
+              </div>
+
+              <!-- VIEW: PANEL -->
+              @if (activeView() === 'v-panel') {
+                <div class="mt-4">
+                  <div class="grid grid-cols-4 gap-2.5">
+                    <div class="bg-primary-soft rounded-xl px-3 py-2.5"><p class="text-[10px] text-soft font-semibold uppercase">Citas hoy</p><p class="font-extrabold text-lg text-primary">{{ citasHoy() }}</p></div>
+                    <div class="bg-accent-soft rounded-xl px-3 py-2.5"><p class="text-[10px] text-soft font-semibold uppercase">Pacientes</p><p class="font-extrabold text-lg">1,284</p></div>
+                    <div class="bg-muted/70 rounded-xl px-3 py-2.5"><p class="text-[10px] text-soft font-semibold uppercase">Firmados</p><p class="font-extrabold text-lg">{{ firmasHoy() }}</p></div>
+                    <div class="bg-muted/70 rounded-xl px-3 py-2.5"><p class="text-[10px] text-soft font-semibold uppercase">Auditoría</p><p class="font-extrabold text-lg text-accent">100%</p></div>
+                  </div>
+                  <div class="grid grid-cols-5 gap-2.5 mt-2.5">
+                    <div class="col-span-3 bg-white border border-line rounded-xl p-3.5">
+                      <div class="flex justify-between items-center">
+                        <p class="text-[11px] font-bold">Consultas de la semana</p>
+                        <span class="text-[10px] font-bold text-accent bg-accent-soft px-2 py-0.5 rounded-full">+18%</span>
+                      </div>
+                      <div class="flex items-end gap-2 h-24 mt-3" [class.bars-on]="barsOn()">
+                        @for (h of ['40%','65%','52%','78%','58%','92%','70%']; track h; let i = $index) {
+                          <div
+                            class="bar flex-1 rounded-t-md"
+                            [style.height]="h"
+                            [style.transition-delay]="(i * 0.1) + 's'"
+                            [class.bg-primary/20]="i === 0"
+                            [class.bg-primary/35]="i === 1"
+                            [class.bg-primary/45]="i === 2"
+                            [class.bg-primary/60]="i === 3"
+                            [class.bg-primary/75]="i === 4"
+                            [class.bg-primary]="i === 5"
+                            [class.bg-accent]="i === 6"
+                          ></div>
+                        }
+                      </div>
+                    </div>
+                    <div class="col-span-2 bg-white border border-line rounded-xl p-3.5 flex flex-col">
+                      <p class="text-[11px] font-bold">Signos en vivo</p>
+                      <svg viewBox="0 0 300 60" class="w-full h-14 mt-1">
+                        <path class="ecg-base" d="M0,30 L40,30 L48,30 L54,12 L60,48 L66,22 L72,30 L110,30 L118,30 L124,8 L130,52 L136,20 L142,30 L200,30 L208,30 L214,10 L220,50 L226,22 L232,30 L300,30" fill="none" stroke="#00939A" stroke-width="2" pathLength="1000"/>
+                        <path class="ecg-path" d="M0,30 L40,30 L48,30 L54,12 L60,48 L66,22 L72,30 L110,30 L118,30 L124,8 L130,52 L136,20 L142,30 L200,30 L208,30 L214,10 L220,50 L226,22 L232,30 L300,30" fill="none" stroke="#00939A" stroke-width="2.5" pathLength="1000" stroke-linecap="round"/>
+                      </svg>
+                      <div class="flex justify-between items-center mt-auto">
+                        <p class="text-[10px] text-soft font-semibold">Frecuencia cardíaca</p>
+                        <p class="font-extrabold text-accent text-lg">{{ bpm() }} <span class="text-[10px] font-bold">lpm</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              }
+
+              <!-- VIEW: AGENDA -->
+              @if (activeView() === 'v-agenda') {
+                <div class="mt-4">
+                  <div class="flex justify-between items-center mb-2.5">
+                    <p class="text-[11px] font-bold">Hoy · Sede Central</p>
+                    <span class="text-[10px] font-bold text-primary bg-primary-soft px-2 py-0.5 rounded-full">12 programadas</span>
+                  </div>
+                  <div class="space-y-2">
+                    @for (item of [
+                      {time:'08:00',name:'M. Portillo · Cardiología',desc:'Control post-operatorio',tag:'Confirmada',cls:'text-accent bg-accent-soft'},
+                      {time:'09:30',name:'J. Cáceres · Pediatría',desc:'Vacunación',tag:'Recordada',cls:'text-primary bg-primary-soft'},
+                      {time:'11:00',name:'R. Umaña · Medicina General',desc:'Primera consulta',tag:'En sala',cls:'text-soft bg-muted'},
+                      {time:'14:15',name:'L. Guzmán · Nutrición',desc:'Seguimiento',tag:'Confirmada',cls:'text-accent bg-accent-soft'},
+                    ]; track item.time) {
+                      <div class="stagger-item flex items-center justify-between bg-white border border-line rounded-xl px-3.5 py-2.5">
+                        <div class="flex items-center gap-2.5">
+                          <span class="w-8 h-8 rounded-lg bg-primary-soft text-primary text-[11px] font-extrabold flex items-center justify-center">{{ item.time }}</span>
+                          <div><p class="text-[12px] font-bold">{{ item.name }}</p><p class="text-[10px] text-soft">{{ item.desc }}</p></div>
+                        </div>
+                        <span class="text-[10px] font-bold {{ item.cls }} px-2 py-1 rounded-full">{{ item.tag }}</span>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+
+              <!-- VIEW: AUDITORÍA -->
+              @if (activeView() === 'v-audit') {
+                <div class="mt-4">
+                  <div class="flex justify-between items-center mb-2.5">
+                    <p class="text-[11px] font-bold">Registro inmutable de actividad</p>
+                    <span class="text-[10px] font-bold text-accent bg-accent-soft px-2 py-0.5 rounded-full">Cadena íntegra ✓</span>
+                  </div>
+                  <div class="bg-navy rounded-xl p-3.5 font-mono text-[10.5px] leading-relaxed h-[178px] overflow-hidden">
+                    @for (line of logFeed(); track line) {
+                      <p class="logline text-white/60">{{ line }}</p>
+                    }
+                  </div>
+                  <div class="flex items-center gap-2 mt-2.5 text-[10px] text-soft font-semibold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent blink"></span> Registro continuo · cada acceso queda grabado con nombre y hora
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- floating chips -->
+        <div class="floaty absolute -left-4 sm:-left-8 top-10 bg-white rounded-2xl shadow-lift px-5 py-4 flex items-center gap-3 border border-line">
+          <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div><p class="text-sm font-bold">Registro firmado</p><p class="text-xs text-soft">Validez legal · doble factor</p></div>
+        </div>
+        <div class="floaty2 absolute -right-3 sm:-right-6 -bottom-7 bg-white rounded-2xl shadow-lift px-5 py-4 flex items-center gap-3 border border-line">
+          <div class="w-10 h-10 rounded-xl bg-accent-soft text-accent flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/></svg>
+          </div>
+          <div><p class="text-sm font-bold">Cifrado activo</p><p class="text-xs text-soft">Expedientes protegidos 24/7</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MÉTRICAS ══════════════ -->
+  <section class="bg-navy text-white py-16">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+      <div class="rv">
+        <p class="font-extrabold text-4xl lg:text-5xl text-primary-glow"><span class="counter" data-target="25">0</span></p>
+        <p class="mt-2 text-sm text-white/60 font-medium">controles de cumplimiento activos, verificados en cada versión</p>
+      </div>
+      <div class="rv rv-d1">
+        <p class="font-extrabold text-4xl lg:text-5xl text-primary-glow"><span class="counter" data-target="100">0</span>%</p>
+        <p class="mt-2 text-sm text-white/60 font-medium">del marco normativo mapeado: Ley de Protección de Datos, HCE y GDPR</p>
+      </div>
+      <div class="rv rv-d2">
+        <p class="font-extrabold text-4xl lg:text-5xl text-primary-glow"><span class="counter" data-target="72">0</span> h</p>
+        <p class="mt-2 text-sm text-white/60 font-medium">protocolo de respuesta y notificación ante cualquier incidente</p>
+      </div>
+      <div class="rv rv-d3">
+        <p class="font-extrabold text-4xl lg:text-5xl text-primary-glow"><span class="counter" data-target="99">0</span>.9%</p>
+        <p class="mt-2 text-sm text-white/60 font-medium">disponibilidad contratada para que su operación nunca se detenga</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ VALOR ══════════════ -->
+  <section id="valor" class="py-24 lg:py-32 bg-muted/40">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="max-w-3xl rv">
+        <p class="text-primary font-bold uppercase tracking-[.18em] text-xs">Por qué Sanara</p>
+        <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight mt-4">Usted no compra tecnología. Compra <span class="text-primary">tranquilidad operativa y reputación.</span></h2>
+        <p class="mt-5 text-lg text-soft">Un expediente alterado, una filtración o una auditoría fallida cuestan millones y dañan años de confianza. Sanara fue diseñado para que eso no ocurra en su institución.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-7 mt-14">
+        <div class="rv bg-white rounded-3xl p-8 shadow-card border border-line hover:-translate-y-1.5 hover:shadow-lift transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-primary text-white flex items-center justify-center shadow-soft">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mt-6">Cumplimiento sin esfuerzo</h3>
+          <p class="mt-3 text-soft leading-relaxed">La plataforma ya cumple la Ley de Protección de Datos y los requisitos de la historia clínica electrónica. Si el regulador llama, usted presenta evidencia ordenada en minutos, no improvisa carpetas.</p>
+          <p class="mt-5 text-sm font-semibold text-primary border-t border-line pt-4">Resultado: cero sorpresas en inspecciones.</p>
+        </div>
+        <div class="rv rv-d1 bg-white rounded-3xl p-8 shadow-card border border-line hover:-translate-y-1.5 hover:shadow-lift transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-navy text-white flex items-center justify-center shadow-soft">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 018 0v3"/><circle cx="12" cy="15" r="1.6"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mt-6">Datos blindados de verdad</h3>
+          <p class="mt-3 text-soft leading-relaxed">Cada expediente viaja y se guarda cifrado con el mismo estándar de la banca. Solo el personal autorizado ve lo necesario, y cada consulta queda registrada con nombre y hora.</p>
+          <p class="mt-5 text-sm font-semibold text-primary border-t border-line pt-4">Resultado: la información de sus pacientes no se filtra ni se altera.</p>
+        </div>
+        <div class="rv rv-d2 bg-white rounded-3xl p-8 shadow-card border border-line hover:-translate-y-1.5 hover:shadow-lift transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-accent text-white flex items-center justify-center shadow-soft">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg>
+          </div>
+          <h3 class="font-bold text-xl mt-6">Operación sin fricción</h3>
+          <p class="mt-3 text-soft leading-relaxed">Agenda, expediente, imágenes y documentos en un solo lugar. Menos papel, menos llamadas, menos reprocesos: su equipo atiende más pacientes con menos estrés.</p>
+          <p class="mt-5 text-sm font-semibold text-primary border-t border-line pt-4">Resultado: eficiencia que se nota en la cuenta de resultados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MÓDULOS ══════════════ -->
+  <section id="modulos" class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="max-w-3xl rv">
+        <p class="text-primary font-bold uppercase tracking-[.18em] text-xs">Una sola plataforma</p>
+        <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight mt-4">Todo lo que su institución necesita, nada que le sobre.</h2>
+      </div>
+
+      <!-- hlm-tabs -->
+      <div class="rv mt-12" hlmTabs [tab]="'t-exp'">
+        <div hlmTabsList variant="line" class="flex flex-wrap gap-3 !bg-transparent !p-0">
+          <button hlmTabsTrigger="t-exp" class="tabbtn">Expediente Clínico</button>
+          <button hlmTabsTrigger="t-age" class="tabbtn">Agenda</button>
+          <button hlmTabsTrigger="t-img" class="tabbtn">Imágenes y Estudios</button>
+          <button hlmTabsTrigger="t-doc" class="tabbtn">Documentos y Firma</button>
+          <button hlmTabsTrigger="t-con" class="tabbtn">Consentimientos</button>
+          <button hlmTabsTrigger="t-aud" class="tabbtn">Auditoría</button>
+        </div>
+
+        <!-- Expediente -->
+        <div hlmTabsContent="t-exp" class="mt-8 grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl border border-line shadow-card overflow-hidden">
+          <div class="p-9 lg:p-12">
+            <span class="text-xs font-bold uppercase tracking-[.16em] text-primary">Núcleo clínico</span>
+            <h3 class="font-bold text-2xl mt-3">El expediente completo, en segundos</h3>
+            <p class="mt-4 text-soft leading-relaxed">Consultas, diagnósticos, alergias, medicamentos y vacunas de cada paciente, organizados y disponibles al instante desde cualquier sede. El médico entra a consulta sabiendo todo lo que necesita saber.</p>
+            <ul class="mt-6 space-y-3 text-[15px] font-medium text-ink/80">
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Historial único por paciente, aunque tenga citas en varias sucursales</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Identidad del paciente verificada desde el primer registro</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Nada se pierde: los registros se conservan, nunca se borran</li>
+            </ul>
+          </div>
+          <div class="p-8 lg:p-10 bg-muted/40">
+            <div class="bg-white rounded-2xl shadow-lift border border-line p-5">
+              <div class="flex items-center gap-3 pb-4 border-b border-line">
+                <span class="w-11 h-11 rounded-full bg-primary text-white font-extrabold flex items-center justify-center">MP</span>
+                <div class="flex-1">
+                  <p class="font-bold text-[15px]">María Portillo · 34 años</p>
+                  <p class="text-[11px] text-soft">EXP-4821 · Sede Central</p>
+                </div>
+                <div class="flex flex-col gap-1 items-end">
+                  <span class="text-[10px] font-bold bg-[#FBE9E4] text-[#CA3214] px-2 py-0.5 rounded-full">Alergia: penicilina</span>
+                  <span class="text-[10px] font-bold bg-primary-soft text-primary px-2 py-0.5 rounded-full">Sangre: O+</span>
+                </div>
+              </div>
+              <div class="grid grid-cols-3 gap-2.5 mt-4">
+                <div class="bg-muted/60 rounded-xl px-3 py-2.5">
+                  <p class="text-[9px] uppercase font-bold text-soft">FC</p>
+                  <p class="font-extrabold text-lg text-accent">{{ bpm() }}<span class="text-[10px] font-bold ml-0.5">lpm</span></p>
+                </div>
+                <div class="bg-muted/60 rounded-xl px-3 py-2.5">
+                  <p class="text-[9px] uppercase font-bold text-soft">SpO₂</p>
+                  <p class="font-extrabold text-lg">{{ spo2() }}</p>
+                </div>
+                <div class="bg-muted/60 rounded-xl px-3 py-2.5">
+                  <p class="text-[9px] uppercase font-bold text-soft">PA</p>
+                  <p class="font-extrabold text-lg">{{ pa() }}</p>
+                </div>
+              </div>
+              <svg viewBox="0 0 300 60" class="w-full h-12 mt-3">
+                <path class="ecg-base" d="M0,30 L40,30 L48,30 L54,12 L60,48 L66,22 L72,30 L110,30 L118,30 L124,8 L130,52 L136,20 L142,30 L200,30 L208,30 L214,10 L220,50 L226,22 L232,30 L300,30" fill="none" stroke="#0E5794" stroke-width="2" pathLength="1000"/>
+                <path class="ecg-path" d="M0,30 L40,30 L48,30 L54,12 L60,48 L66,22 L72,30 L110,30 L118,30 L124,8 L130,52 L136,20 L142,30 L200,30 L208,30 L214,10 L220,50 L226,22 L232,30 L300,30" fill="none" stroke="#0E5794" stroke-width="2.5" pathLength="1000" stroke-linecap="round"/>
+              </svg>
+              <p class="text-[10px] font-bold uppercase text-soft mt-4 mb-2">Historial reciente</p>
+              <div class="space-y-2">
+                <div class="stagger-item flex items-center gap-2.5 text-[12px]"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span><p class="font-bold">Hoy · Control cardiológico</p><p class="text-soft ml-auto">Dra. Ramírez</p></div>
+                <div class="stagger-item flex items-center gap-2.5 text-[12px]"><span class="w-1.5 h-1.5 rounded-full bg-primary/50"></span><p class="font-bold">12 mar · Laboratorio general</p><p class="text-soft ml-auto">Resultados firmados</p></div>
+                <div class="stagger-item flex items-center gap-2.5 text-[12px]"><span class="w-1.5 h-1.5 rounded-full bg-accent"></span><p class="font-bold">03 feb · Vacuna antitetánica</p><p class="text-soft ml-auto">Registrada ✓</p></div>
+              </div>
+              <div class="mt-4 flex items-center justify-between bg-muted/60 rounded-xl px-3.5 py-2.5">
+                <p class="text-[11px] font-bold">Informe médico.pdf</p>
+                <span class="sig-badge text-[10px] font-bold px-2.5 py-1 rounded-full {{ sigState().cls }}">{{ sigState().txt }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agenda -->
+        <div hlmTabsContent="t-age" class="mt-8 grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl border border-line shadow-card overflow-hidden">
+          <div class="p-9 lg:p-12">
+            <span class="text-xs font-bold uppercase tracking-[.16em] text-primary">Agenda inteligente</span>
+            <h3 class="font-bold text-2xl mt-3">Menos ausentismo, más consultas atendidas</h3>
+            <p class="mt-4 text-soft leading-relaxed">Citas por sede y por profesional, priorización por triage y recordatorios automáticos al paciente. Su agenda deja de ser un cuaderno y se convierte en una herramienta de ingresos.</p>
+            <ul class="mt-6 space-y-3 text-[15px] font-medium text-ink/80">
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Recordatorios que reducen las citas perdidas</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Vista por sucursal, especialidad y profesional</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>El motivo de consulta viaja cifrado: nadie más lo lee</li>
+            </ul>
+          </div>
+          <div class="h-full min-h-[300px] bg-muted/40 flex items-center justify-center p-10">
+            <div class="w-full max-w-sm bg-white rounded-2xl shadow-lift p-6 border border-line">
+              <p class="font-bold">Agenda · Hoy</p>
+              <div class="mt-4 space-y-3 text-sm">
+                <div class="flex justify-between items-center bg-primary-soft rounded-xl px-4 py-3"><span class="font-semibold">08:00 · M. Portillo</span><span class="text-primary font-bold">Confirmada</span></div>
+                <div class="flex justify-between items-center bg-white border border-line rounded-xl px-4 py-3"><span class="font-semibold">09:30 · J. Cáceres</span><span class="text-accent font-bold">Recordado</span></div>
+                <div class="flex justify-between items-center bg-white border border-line rounded-xl px-4 py-3"><span class="font-semibold">11:00 · R. Umaña</span><span class="text-soft font-bold">En sala</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imágenes -->
+        <div hlmTabsContent="t-img" class="mt-8 grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl border border-line shadow-card overflow-hidden">
+          <div class="p-9 lg:p-12">
+            <span class="text-xs font-bold uppercase tracking-[.16em] text-primary">Imágenes y estudios</span>
+            <h3 class="font-bold text-2xl mt-3">Resultados que no se pierden ni se alteran</h3>
+            <p class="mt-4 text-soft leading-relaxed">Radiografías, estudios y resultados de laboratorio quedan sellados con una huella digital única al subirlos. Si alguien modificara un archivo, el sistema lo detectaría de inmediato.</p>
+            <ul class="mt-6 space-y-3 text-[15px] font-medium text-ink/80">
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Sello de integridad automático en cada imagen o PDF</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Almacenamiento inmutable: imposible sobrescribir o borrar</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Acceso seguro desde cualquier sede autorizada</li>
+            </ul>
+          </div>
+          <div class="h-full min-h-[300px] bg-muted/40 flex items-center justify-center p-10">
+            <img src="images/estudios.webp" alt="Protección de estudios médicos" class="max-h-[320px] w-auto rounded-[2.5rem]">
+          </div>
+        </div>
+
+        <!-- Documentos -->
+        <div hlmTabsContent="t-doc" class="mt-8 grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl border border-line shadow-card overflow-hidden">
+          <div class="p-9 lg:p-12">
+            <span class="text-xs font-bold uppercase tracking-[.16em] text-primary">Documentos y firma</span>
+            <h3 class="font-bold text-2xl mt-3">Recetas e informes con validez legal</h3>
+            <p class="mt-4 text-soft leading-relaxed">Cada documento sale firmado digitalmente por el profesional, con verificación de identidad en el momento de firmar. Un PDF de Sanara es evidencia, no solo papel impreso.</p>
+            <ul class="mt-6 space-y-3 text-[15px] font-medium text-ink/80">
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Firma con doble factor en cada acto clínico</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Plantillas institucionales con membrete y versionado</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Nadie puede negar ni atribuirse una firma ajena</li>
+            </ul>
+          </div>
+          <div class="h-full min-h-[300px] bg-muted/40 flex items-center justify-center p-10">
+            <div class="w-full max-w-sm bg-white rounded-2xl shadow-lift p-6 border border-line">
+              <div class="flex items-center justify-between">
+                <p class="font-bold">Informe médico.pdf</p>
+                <span class="text-[10px] font-bold uppercase bg-accent-soft text-accent px-2.5 py-1 rounded-full">Firmado</span>
+              </div>
+              <div class="mt-4 h-2 rounded bg-muted"></div><div class="mt-2 h-2 rounded bg-muted w-4/5"></div><div class="mt-2 h-2 rounded bg-muted w-3/5"></div>
+              <div class="mt-5 flex items-center gap-3 bg-muted/60 rounded-xl px-4 py-3">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0E5794" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+                <div class="text-xs"><p class="font-bold">Dra. E. Ramírez · verificada</p><p class="text-soft">Firma válida · hoy 10:42</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consentimientos -->
+        <div hlmTabsContent="t-con" class="mt-8 grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl border border-line shadow-card overflow-hidden">
+          <div class="p-9 lg:p-12">
+            <span class="text-xs font-bold uppercase tracking-[.16em] text-primary">Consentimientos</span>
+            <h3 class="font-bold text-2xl mt-3">El paciente decide. Usted queda protegido.</h3>
+            <p class="mt-4 text-soft leading-relaxed">Cada paciente autoriza quién puede ver su información y por cuánto tiempo. Si revoca el permiso, el sistema lo aplica en toda la institución al instante — y queda el historial de todo el proceso.</p>
+            <ul class="mt-6 space-y-3 text-[15px] font-medium text-ink/80">
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Permisos granulares por profesional y por período</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Revocación inmediata sin borrar la evidencia legal</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Acceso de emergencia con justificación obligatoria</li>
+            </ul>
+          </div>
+          <div class="h-full min-h-[300px] bg-muted/40 flex items-center justify-center p-10">
+            <div class="w-full max-w-sm bg-white rounded-2xl shadow-lift p-6 border border-line">
+              <p class="font-bold">Consentimiento de M. Portillo</p>
+              <div class="mt-4 space-y-3 text-sm">
+                <div class="flex justify-between items-center"><span class="font-semibold">Dra. Ramírez · Cardiología</span><span class="text-accent font-bold text-xs bg-accent-soft px-2.5 py-1 rounded-full">Autorizado</span></div>
+                <div class="flex justify-between items-center"><span class="font-semibold">Recepción · Sede Central</span><span class="text-primary font-bold text-xs bg-primary-soft px-2.5 py-1 rounded-full">Solo citas</span></div>
+                <div class="flex justify-between items-center"><span class="font-semibold">Aseguradora</span><span class="text-[#CA3214] font-bold text-xs bg-[#FBE9E4] px-2.5 py-1 rounded-full">Revocado</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Auditoría -->
+        <div hlmTabsContent="t-aud" class="mt-8 grid lg:grid-cols-2 gap-10 items-center bg-white rounded-3xl border border-line shadow-card overflow-hidden">
+          <div class="p-9 lg:p-12">
+            <span class="text-xs font-bold uppercase tracking-[.16em] text-primary">Auditoría y gobierno</span>
+            <h3 class="font-bold text-2xl mt-3">Evidencia lista para el regulador o el juzgado</h3>
+            <p class="mt-4 text-soft leading-relaxed">Cada acceso, firma y cambio queda grabado en un registro inmutable encadenado. Ante una disputa legal, su institución demuestra con certeza quién hizo qué, cuándo y desde dónde.</p>
+            <ul class="mt-6 space-y-3 text-[15px] font-medium text-ink/80">
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Registro que no se puede editar ni borrar, por diseño</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Reportes de auditoría exportables en un clic</li>
+              <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Detección de cualquier intento de manipulación</li>
+            </ul>
+          </div>
+          <div class="h-full min-h-[300px] bg-muted/40 flex items-center justify-center p-10">
+            <div class="w-full max-w-sm bg-navy rounded-2xl shadow-lift p-6 font-mono text-[11px] leading-relaxed">
+              <p class="font-bold text-sm mb-3 text-white">Bitácora inmutable</p>
+              @for (line of logFeed().slice(0, 4); track line) {
+                <p class="text-white/60">{{ line }}</p>
+              }
+              @if (logFeed()[4]) {
+                <p class="text-red-300" style="filter: brightness(1.6)">{{ logFeed()[4] }}</p>
+              }
+              <p class="mt-3 text-accent font-bold">Cadena íntegra · 0 anomalías</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CUMPLIMIENTO ══════════════ -->
+  <section id="cumplimiento" class="py-24 lg:py-32 bg-navy text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-bright/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+      <div class="max-w-3xl rv">
+        <p class="text-primary-glow font-bold uppercase tracking-[.18em] text-xs">Cumplimiento normativo</p>
+        <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight mt-4">La ley, traducida a <span class="text-primary-glow">tranquilidad para la dirección.</span></h2>
+        <p class="mt-5 text-lg text-white/60">No necesita conocer la tecnología detrás. Esto es lo que Sanara garantiza frente a cada frente normativo de su institución.</p>
+      </div>
+
+      <div class="rv mt-12 grid lg:grid-cols-2 gap-6">
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
+          <div class="flex items-center gap-4">
+            <span class="w-12 h-12 rounded-2xl bg-primary-bright/20 text-primary-glow flex items-center justify-center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <div><h3 class="font-bold text-lg">Ley de Protección de Datos</h3><p class="text-sm text-white/50">El marco que protege la información de sus pacientes</p></div>
+          </div>
+          <p class="mt-5 text-white/70 leading-relaxed">Exige proteger y usar solo lo necesario de cada dato personal. En Sanara: información cifrada, accesos por rol, consentimientos y notificación de incidentes en 72 horas. <span class="text-primary-glow font-semibold">Su institución demuestra respeto al paciente en cada consulta.</span></p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
+          <div class="flex items-center gap-4">
+            <span class="w-12 h-12 rounded-2xl bg-accent/25 text-accent-bright flex items-center justify-center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h4"/></svg>
+            </span>
+            <div><h3 class="font-bold text-lg">Historia Clínica Electrónica</h3><p class="text-sm text-white/50">El expediente que se defiende solo</p></div>
+          </div>
+          <p class="mt-5 text-white/70 leading-relaxed">Cada registro queda firmado, fechado e inmutable: nadie puede alterarlo ni ocultarlo sin dejar rastro. <span class="text-primary-glow font-semibold">Usted tiene la evidencia para proteger a su institución y a su personal honesto en cualquier proceso legal.</span></p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
+          <div class="flex items-center gap-4">
+            <span class="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18-3-3.5-3-14.5 0-18z"/></svg>
+            </span>
+            <div><h3 class="font-bold text-lg">FHIR · Interoperabilidad</h3><p class="text-sm text-white/50">El estándar mundial de intercambio clínico</p></div>
+          </div>
+          <p class="mt-5 text-white/70 leading-relaxed">Sanara habla el lenguaje internacional que usan los mejores sistemas de salud: se conecta con laboratorios, aseguradoras y el sistema nacional. <span class="text-primary-glow font-semibold">Su hospital se integra con el mundo — y sus datos nunca quedan cautivos.</span></p>
+        </div>
+        <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
+          <div class="flex items-center gap-4">
+            <span class="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center font-extrabold text-sm">GDPR</span>
+            <div><h3 class="font-bold text-lg">Estándar europeo (GDPR)</h3><p class="text-sm text-white/50">El marco complementario más exigente del mundo</p></div>
+          </div>
+          <p class="mt-5 text-white/70 leading-relaxed">Sanara incorpora las prácticas del estándar más alto de privacidad del planeta. <span class="text-primary-glow font-semibold">Su institución queda lista para convenios, acreditaciones y cooperación internacional.</span></p>
+        </div>
+      </div>
+
+      <div class="rv mt-10 bg-white text-foreground rounded-3xl shadow-lift overflow-hidden">
+        <div class="px-8 py-6 border-b border-line flex flex-wrap items-center justify-between gap-3">
+          <h3 class="font-bold text-lg">Lo que esto significa en la práctica</h3>
+          <span class="text-xs font-bold uppercase tracking-widest text-primary bg-primary-soft px-3 py-1.5 rounded-full">25 controles técnicos verificados</span>
+        </div>
+        <div class="divide-y divide-line text-[15px]">
+          @for (row of [
+            {q:'Ante una inspección',a:'Registros de tratamiento, accesos y consentimientos ordenados y exportables.',r:'Respuesta en horas, no en semanas.'},
+            {q:'Ante una disputa legal',a:'Bitácora inmutable con firma, hora e identidad de cada actuación clínica.',r:'Evidencia sólida a su favor.'},
+            {q:'Ante un incidente',a:'Protocolo de contención y notificación en menos de 72 horas.',r:'Sanciones evitadas, reputación cuidada.'},
+            {q:'Ante sus pacientes',a:'Consentimientos claros y control real sobre su información.',r:'Confianza que se convierte en fidelidad.'},
+          ]; track row.q) {
+            <div class="grid sm:grid-cols-3 gap-3 px-8 py-5 transition hover:bg-primary-soft">
+              <p class="font-bold text-foreground">{{ row.q }}</p>
+              <p class="text-muted-foreground">{{ row.a }}</p>
+              <p class="font-semibold text-primary">{{ row.r }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ SEGURIDAD ══════════════ -->
+  <section id="seguridad" class="py-24 lg:py-32">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+      <div class="rv order-2 lg:order-1 relative">
+        <div class="absolute inset-0 bg-primary-soft rounded-[3rem] rotate-3 scale-95"></div>
+        <img src="images/seguridad-tablet.webp" alt="Profesional de salud usando Sanara en tablet" class="relative rounded-[2.5rem] shadow-lift w-full object-cover aspect-[4/3]">
+        <div class="floaty absolute -bottom-6 left-6 bg-white rounded-2xl shadow-lift px-5 py-4 border border-line flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>
+          </div>
+          <div><p class="text-sm font-bold">Acceso con identidad verificada</p><p class="text-xs text-soft">Cada profesional, su propia llave</p></div>
+        </div>
+      </div>
+      <div class="order-1 lg:order-2">
+        <p class="rv text-primary font-bold uppercase tracking-[.18em] text-xs">Seguridad de grado bancario</p>
+        <h2 class="rv font-extrabold text-3xl sm:text-4xl leading-tight mt-4">Sus datos, protegidos como el activo que son.</h2>
+        <p class="rv mt-5 text-lg text-soft">Para un hospital, la información clínica vale tanto como el dinero en la bóveda. Así la tratamos.</p>
+        <ul class="mt-9 space-y-5">
+          <li class="rv flex gap-4"><span class="checkicon mt-0.5 !w-7 !h-7"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><p class="font-bold">Cifrado en todo momento</p><p class="text-soft">Los expedientes están cifrados mientras se guardan y mientras viajan. Ni siquiera una fuga de infraestructura expondría datos legibles.</p></div></li>
+          <li class="rv rv-d1 flex gap-4"><span class="checkicon mt-0.5 !w-7 !h-7"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><p class="font-bold">Doble verificación en cada acto clínico</p><p class="text-soft">Firmar o modificar un registro requiere identidad + segundo factor. Las credenciales robadas no sirven solas.</p></div></li>
+          <li class="rv rv-d2 flex gap-4"><span class="checkicon mt-0.5 !w-7 !h-7"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><p class="font-bold">Cada acceso queda grabado</p><p class="text-soft">Quién vio qué expediente, cuándo y desde dónde. La curiosidad indebida deja de ser invisible.</p></div></li>
+          <li class="rv rv-d3 flex gap-4"><span class="checkicon mt-0.5 !w-7 !h-7"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><p class="font-bold">Emergencias sin perder control</p><p class="text-soft">En una urgencia vital el médico accede, pero con justificación firmada y revisión posterior. Seguridad que no cuesta vidas.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ ANTES / AHORA ══════════════ -->
+  <section class="py-24 lg:py-32 bg-muted/40">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto rv">
+        <p class="text-primary font-bold uppercase tracking-[.18em] text-xs">El cambio</p>
+        <h2 class="font-extrabold text-3xl sm:text-4xl leading-tight mt-4">Del papel a Sanara: lo que su institución deja atrás</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 mt-14">
+        <div class="rv bg-white rounded-3xl border border-line shadow-card p-9">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-danger-soft text-danger flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </span>
+            <h3 class="font-bold text-xl">Hoy, con papel y sistemas aislados</h3>
+          </div>
+          <ul class="mt-6 space-y-4 text-[15px] text-soft">
+            <li class="flex gap-3"><span class="text-danger font-bold">✕</span>Búsquedas en archivadores que toman minutos</li>
+            <li class="flex gap-3"><span class="text-danger font-bold">✕</span>Firmas ilegibles y documentos que se extravían</li>
+            <li class="flex gap-3"><span class="text-danger font-bold">✕</span>Auditorías que se resuelven con semanas de pánico</li>
+            <li class="flex gap-3"><span class="text-danger font-bold">✕</span>Copias en USB y papeles sueltos sin control de acceso</li>
+            <li class="flex gap-3"><span class="text-danger font-bold">✕</span>Citas perdidas porque nadie recordó al paciente</li>
+            <li class="flex gap-3"><span class="text-danger font-bold">✕</span>Sistemas que no hablan entre sí y datos duplicados</li>
+          </ul>
+        </div>
+        <div class="rv rv-d1 bg-navy text-white rounded-3xl shadow-lift p-9 ring-1 ring-primary-bright/30">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-primary-bright text-white flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <h3 class="font-bold text-xl">Mañana, con Sanara Studio</h3>
+          </div>
+          <ul class="mt-6 space-y-4 text-[15px] text-white/75">
+            <li class="flex gap-3"><span class="text-accent-bright font-bold">✓</span>Expediente completo en segundos, desde cualquier sede</li>
+            <li class="flex gap-3"><span class="text-accent-bright font-bold">✓</span>Firmas verificadas con doble factor y validez legal</li>
+            <li class="flex gap-3"><span class="text-accent-bright font-bold">✓</span>Evidencia de auditoría exportable en un clic</li>
+            <li class="flex gap-3"><span class="text-accent-bright font-bold">✓</span>Cifrado de grado bancario y acceso registrado</li>
+            <li class="flex gap-3"><span class="text-accent-bright font-bold">✓</span>Recordatorios automáticos que llenan la agenda</li>
+            <li class="flex gap-3"><span class="text-accent-bright font-bold">✓</span>Conexión FHIR con laboratorios, aseguradoras y el Estado</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PLANES ══════════════ -->
+  <section id="planes" class="py-24 lg:py-32 relative overflow-hidden">
+    <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-primary-soft rounded-full blur-3xl pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 relative">
+      <div class="text-center max-w-3xl mx-auto rv">
+        <p class="text-primary font-bold uppercase tracking-[.18em] text-xs">Planes</p>
+        <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight mt-4">Una inversión que se compara con <span class="text-primary">una sola multa evitada.</span></h2>
+        <p class="mt-5 text-lg text-soft">Elija el tamaño de su institución. Todos los planes incluyen cumplimiento legal completo y cifrado de datos.</p>
+        <div class="mt-8 inline-flex items-center bg-white rounded-2xl p-1.5 border border-line shadow-card">
+          <button
+            class="px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-250"
+            [class.bg-primary]="pricingCycle() === 'm'"
+            [class.text-white]="pricingCycle() === 'm'"
+            [class.text-soft]="pricingCycle() !== 'm'"
+            (click)="setPricing('m')"
+          >Mensual</button>
+          <button
+            class="px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-250"
+            [class.bg-primary]="pricingCycle() === 'y'"
+            [class.text-white]="pricingCycle() === 'y'"
+            [class.text-soft]="pricingCycle() !== 'y'"
+            (click)="setPricing('y')"
+          >Anual <span class="text-accent">−20%</span></button>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8 mt-14 items-stretch">
+        <!-- Consultorio -->
+        <div class="rv bg-white rounded-3xl border border-line shadow-card p-9 flex flex-col hover:-translate-y-2 hover:shadow-lift transition duration-300">
+          <h3 class="font-bold text-xl">Consultorio</h3>
+          <p class="text-sm text-soft mt-1.5">Para práctica individual o consultorios pequeños.</p>
+          <div class="mt-7 flex items-end gap-2">
+            <span class="font-extrabold text-5xl">{{ pricingCycle() === 'm' ? '$249' : '$199' }}</span>
+            <span class="text-soft font-medium pb-1.5">/ mes</span>
+          </div>
+          <p class="text-xs text-soft mt-1">{{ pricingCycle() === 'm' ? 'Facturado mensualmente' : 'Facturado anualmente (ahorra $600)' }}</p>
+          <ul class="mt-8 space-y-3.5 text-[15px] font-medium text-ink/80 flex-1">
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hasta 5 profesionales de salud</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>1 sede</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Expediente clínico + agenda</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Firma electrónica con validez legal</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Cifrado y cumplimiento incluidos</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Soporte en horario hábil</li>
+          </ul>
+          <a href="#demo" class="mt-9 block text-center border-2 border-primary text-primary font-bold rounded-2xl py-3.5 hover:bg-primary-soft transition">Comenzar ahora</a>
+        </div>
+
+        <!-- Clínica -->
+        <div class="rv rv-d1 relative bg-navy text-white rounded-3xl shadow-lift p-9 flex flex-col hover:-translate-y-2 transition duration-300 ring-2 ring-primary-bright">
+          <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-bright text-white text-xs font-bold uppercase tracking-widest px-5 py-1.5 rounded-full shadow-soft">El más elegido</span>
+          <h3 class="font-bold text-xl">Clínica</h3>
+          <p class="text-sm text-white/55 mt-1.5">Para clínicas con varias especialidades y sucursales.</p>
+          <div class="mt-7 flex items-end gap-2">
+            <span class="font-extrabold text-5xl text-primary-glow">{{ pricingCycle() === 'm' ? '$649' : '$519' }}</span>
+            <span class="text-white/50 font-medium pb-1.5">/ mes</span>
+          </div>
+          <p class="text-xs text-white/40 mt-1">{{ pricingCycle() === 'm' ? 'Facturado mensualmente' : 'Facturado anualmente (ahorra $1,560)' }}</p>
+          <ul class="mt-8 space-y-3.5 text-[15px] font-medium text-white/80 flex-1">
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hasta 25 profesionales de salud</li>
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Hasta 3 sucursales</li>
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Todo lo del plan Consultorio</li>
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Imágenes y estudios con sello de integridad</li>
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Consentimientos granulares de pacientes</li>
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Reportes de auditoría para inspecciones</li>
+            <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Soporte prioritario 7 días</li>
+          </ul>
+          <a href="#demo" class="mt-9 block text-center bg-primary-bright hover:bg-primary-glow hover:text-navy text-white font-bold rounded-2xl py-3.5 transition shadow-soft">Agendar demo</a>
+        </div>
+
+        <!-- Hospital -->
+        <div class="rv rv-d2 bg-white rounded-3xl border border-line shadow-card p-9 flex flex-col hover:-translate-y-2 hover:shadow-lift transition duration-300">
+          <h3 class="font-bold text-xl">Hospital & Grupos</h3>
+          <p class="text-sm text-soft mt-1.5">Para hospitales y grupos multi-sede con necesidades propias.</p>
+          <div class="mt-7 flex items-end gap-2">
+            <span class="font-extrabold text-5xl">A medida</span>
+          </div>
+          <p class="text-xs text-soft mt-1">Propuesta ejecutiva en 48 horas</p>
+          <ul class="mt-8 space-y-3.5 text-[15px] font-medium text-ink/80 flex-1">
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Profesionales y sucursales ilimitados</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Todo lo del plan Clínica</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Ingreso único con su directorio institucional</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Acompañamiento de Oficial de Protección de Datos</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Migración asistida desde papel o sistemas legados</li>
+            <li class="flex gap-3"><span class="checkicon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>SLA 99.9% contractual + soporte 24/7</li>
+          </ul>
+          <a href="#demo" class="mt-9 block text-center border-2 border-primary text-primary font-bold rounded-2xl py-3.5 hover:bg-primary-soft transition">Hablar con un asesor</a>
+        </div>
+      </div>
+
+      <p class="rv text-center text-sm text-soft mt-10">Todos los planes incluyen: residencia segura de datos, respaldos inmutables, capacitación inicial y actualizaciones de cumplimiento sin costo. <span class="font-semibold text-ink/70">Precios en USD.</span></p>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section id="faq" class="py-24 lg:py-32 bg-muted/40">
+    <div class="max-w-4xl mx-auto px-5 lg:px-8">
+      <div class="text-center rv">
+        <p class="text-primary font-bold uppercase tracking-[.18em] text-xs">Preguntas frecuentes</p>
+        <h2 class="font-extrabold text-3xl sm:text-4xl leading-tight mt-4">Lo que todo director pregunta antes de firmar</h2>
+      </div>
+      <div class="mt-12 space-y-4">
+    <div class="mt-12 space-y-4">
+      @for (item of faqItems; track item.q; let i = $index) {
+        <div class="bg-white rounded-2xl border border-line shadow-card overflow-hidden">
+          <button
+            (click)="toggleFaq(i)"
+            class="w-full px-7 py-5 text-left font-bold text-base flex items-center justify-between gap-4 hover:bg-muted/30 transition-colors"
+          >
+            {{ item.q }}
+            <svg
+              class="flex-none transition-transform duration-300"
+              [class.rotate-180]="openFaqIndex() === i"
+              width="20" height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+            >
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </button>
+          <div
+            class="overflow-hidden transition-all duration-300"
+            [style.max-height]="openFaqIndex() === i ? '500px' : '0'"
+            [style.opacity]="openFaqIndex() === i ? '1' : '0'"
+          >
+            <p class="px-7 pb-6 text-muted-foreground leading-relaxed">
+              {{ item.a }}
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CTA FINAL ══════════════ -->
+  <section id="demo" class="py-24 lg:py-32">
+    <div class="max-w-6xl mx-auto px-5 lg:px-8">
+      <div class="rv relative bg-navy rounded-[2.5rem] overflow-hidden shadow-lift">
+        <div class="absolute -top-24 -right-24 w-[420px] h-[420px] bg-primary-bright/25 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-24 w-[380px] h-[380px] bg-accent/20 rounded-full blur-3xl"></div>
+        <div class="relative px-8 py-16 lg:px-20 lg:py-20 grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center">
+          <div>
+            <p class="text-accent-bright font-bold uppercase tracking-[.18em] text-xs">Demo ejecutiva · 30 minutos</p>
+            <h2 class="font-extrabold text-3xl sm:text-4xl lg:text-[2.6rem] leading-tight mt-4 text-white">Vea Sanara funcionando con el flujo real de <span class="text-primary-glow">su institución.</span></h2>
+            <p class="mt-5 text-lg text-white/60 max-w-xl">Sin tecnicismos: le mostramos cómo se protege un expediente, cómo se firma un informe y cómo se responde una auditoría. Usted decide con la información en la mano.</p>
+            <div class="mt-9 flex flex-wrap gap-4">
+              <a href="mailto:ventas@sanara-studio.com?subject=Solicitud%20de%20demo" class="bg-primary-bright hover:bg-primary-glow hover:text-navy text-white font-bold px-8 py-4 rounded-2xl shadow-soft transition">Agendar mi demo</a>
+              <a href="mailto:ventas@sanara-studio.com" class="border border-white/25 hover:border-white/60 text-white font-semibold px-8 py-4 rounded-2xl transition">ventas@sanara-studio.com</a>
+            </div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
+            <p class="font-bold text-white text-lg">En la demo verá:</p>
+            <ul class="mt-5 space-y-4 text-white/75 text-[15px] font-medium">
+              <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Un expediente cifrado de punta a punta</li>
+              <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>Una firma con validez legal en vivo</li>
+              <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>El reporte que vería un auditor</li>
+              <li class="flex gap-3"><span class="checkicon !bg-primary-bright/25 !text-primary-glow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>El plan y retorno de inversión para su tamaño</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="bg-navy-deep text-white/60 pt-16 pb-10 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-10">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-xl bg-primary-bright flex items-center justify-center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z" fill="#fff" opacity=".9"/><path d="M8 12h2.2l1.1-2.4 1.6 4.4 1.1-2H16" stroke="#0E5794" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="font-extrabold text-lg text-white">Sanara<span class="text-primary-glow">Studio</span></span>
+          </div>
+          <p class="mt-4 text-sm leading-relaxed max-w-sm">Historia clínica electrónica diseñada para El Salvador: cumplimiento de la Ley de Protección de Datos y del marco de la HCE, con estándares GDPR e interoperabilidad FHIR.</p>
+          <p class="mt-4 text-xs">sanara-studio.com · fhir.sanara-studio.com</p>
+        </div>
+        <div>
+          <p class="font-bold text-white text-sm uppercase tracking-widest mb-4">Producto</p>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#modulos" class="hover:text-primary-glow transition">Módulos</a></li>
+            <li><a href="#seguridad" class="hover:text-primary-glow transition">Seguridad</a></li>
+            <li><a href="#planes" class="hover:text-primary-glow transition">Planes</a></li>
+            <li><a href="#demo" class="hover:text-primary-glow transition">Demo</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-bold text-white text-sm uppercase tracking-widest mb-4">Confianza</p>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="#cumplimiento" class="hover:text-primary-glow transition">Cumplimiento normativo</a></li>
+            <li><a href="#faq" class="hover:text-primary-glow transition">Preguntas frecuentes</a></li>
+            <li><a href="#" class="hover:text-primary-glow transition">Política de privacidad</a></li>
+            <li><a href="#" class="hover:text-primary-glow transition">Términos del servicio</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-7 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-3 text-xs">
+        <p>© 2025 Sanara Studio. Todos los derechos reservados.</p>
+        <p>República de El Salvador · Datos protegidos según la Ley de Protección de Datos Personales</p>
+      </div>
+    </div>
+  </footer>
+
+</div>

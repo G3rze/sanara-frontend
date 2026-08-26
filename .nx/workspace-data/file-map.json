@@ -1,0 +1,148 @@
+{
+  "version": "6.0",
+  "nxVersion": "23.1.1",
+  "pathMappings": {},
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".agents/skills/spartan/SKILL.md",
+        "hash": "12303249410957216306"
+      },
+      {
+        "file": ".agents/skills/spartan/cli.md",
+        "hash": "7135584715170427453"
+      },
+      {
+        "file": ".agents/skills/spartan/customization.md",
+        "hash": "18192419933255709292"
+      },
+      {
+        "file": ".agents/skills/spartan/mcp.md",
+        "hash": "9783805748277990032"
+      },
+      {
+        "file": ".agents/skills/spartan/registry.md",
+        "hash": "6239855868114155149"
+      },
+      {
+        "file": ".agents/skills/spartan/rules/brain-vs-helm.md",
+        "hash": "8938007700780245566"
+      },
+      {
+        "file": ".agents/skills/spartan/rules/composition.md",
+        "hash": "11611986442752763585"
+      },
+      {
+        "file": ".agents/skills/spartan/rules/forms.md",
+        "hash": "17995217404453083378"
+      },
+      {
+        "file": ".agents/skills/spartan/rules/icons.md",
+        "hash": "11094263086426110156"
+      },
+      {
+        "file": ".agents/skills/spartan/rules/styling.md",
+        "hash": "4882081044793426281"
+      },
+      {
+        "file": ".editorconfig",
+        "hash": "4165385352547808172"
+      },
+      {
+        "file": ".gitignore",
+        "hash": "15870114352599581041"
+      },
+      {
+        "file": ".postcssrc.json",
+        "hash": "3238241118719959164"
+      },
+      {
+        "file": ".prettierrc",
+        "hash": "11411277661116404690"
+      },
+      {
+        "file": ".vscode/extensions.json",
+        "hash": "5331566439708925252"
+      },
+      {
+        "file": ".vscode/launch.json",
+        "hash": "17038929134016848735"
+      },
+      {
+        "file": ".vscode/tasks.json",
+        "hash": "1370608409982315224"
+      },
+      {
+        "file": "README.md",
+        "hash": "11722673629917119325"
+      },
+      {
+        "file": "angular.json",
+        "hash": "17817885542002317639"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "10368861530689765277"
+      },
+      {
+        "file": "package.json",
+        "hash": "18295449847489749731"
+      },
+      {
+        "file": "public/favicon.ico",
+        "hash": "3988961587069885523"
+      },
+      {
+        "file": "src/app/app.config.ts",
+        "hash": "2231130204567329230"
+      },
+      {
+        "file": "src/app/app.css",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/app.html",
+        "hash": "5773875968800132405"
+      },
+      {
+        "file": "src/app/app.routes.ts",
+        "hash": "12397496131277534773"
+      },
+      {
+        "file": "src/app/app.spec.ts",
+        "hash": "3209592445637213647"
+      },
+      {
+        "file": "src/app/app.ts",
+        "hash": "13603991307420606295"
+      },
+      {
+        "file": "src/index.html",
+        "hash": "17188488888177757150"
+      },
+      {
+        "file": "src/main.ts",
+        "hash": "15944248449879998907"
+      },
+      {
+        "file": "src/styles.css",
+        "hash": "14692851298019157033"
+      },
+      {
+        "file": "tsconfig.app.json",
+        "hash": "2688091369495503175"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "2337361275281218531"
+      },
+      {
+        "file": "tsconfig.spec.json",
+        "hash": "17796778151164975993"
+      }
+    ]
+  },
+  "externalNodesHash": "1664443027116182828"
+}
