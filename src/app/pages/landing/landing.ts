@@ -4,11 +4,13 @@ import {
   HostListener,
   signal,
   afterNextRender,
+  inject,
 } from '@angular/core';
 import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
+import { ClerkService } from '../../services/clerk.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -32,7 +34,7 @@ export class LandingPage {
     { href: '#modulos', label: 'Módulos' },
     { href: '#cumplimiento', label: 'Cumplimiento' },
     { href: '#seguridad', label: 'Seguridad' },
-    { href: '#planes', label: 'Planes' },
+    { href: '#waitlist', label: 'Acceso temprano' },
     { href: '#faq', label: 'FAQ' },
   ];
 
@@ -93,6 +95,17 @@ export class LandingPage {
       a: 'En infraestructura en la nube de nivel empresarial con cifrado permanente. Dentro de su institución, solo el personal que usted autoriza —y solo lo que necesita para su rol—. El personal de soporte de Sanara jamás puede leer datos clínicos: por diseño técnico, no por promesa.',
     },
   ];
+
+  // ── Waitlist (Clerk) ──
+  protected readonly clerk = inject(ClerkService);
+
+  protected joinWaitlist(email: string): void {
+    if (email) this.clerk.join(email);
+  }
+
+  protected retryWaitlist(): void {
+    this.clerk.reset();
+  }
 
   // ── Lifecycle ──
   constructor() {
