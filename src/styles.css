@@ -9,16 +9,16 @@
 
   /* Fondos */
   --background: oklch(0.9911 0 0);
-  --foreground: oklch(0.2046 0 0);
+  --foreground: #171717;
 
   /* Cards y Popovers */
   --card: oklch(0.9911 0 0);
   --card-foreground: oklch(0.2046 0 0);
-  --popover: oklch(0.9911 0 0);
+  --popover: #fcfcfc;
   --popover-foreground: oklch(0.4386 0 0);
 
   /* Primary */
-  --primary: oklch(0.4489 0.1197 250.0857);
+  --primary: #0e5794;
   --primary-foreground: oklch(0.9911 0 0);
 
   /* Secondary */
@@ -57,7 +57,7 @@
   --background: oklch(0.1822 0 0);
   --foreground: oklch(0.9288 0.0126 255.5078);
 
-  --card: oklch(0.2046 0 0);
+  --card: #171717;
   --card-foreground: oklch(0.9288 0.0126 255.5078);
   --popover: oklch(0.2603 0 0);
   --popover-foreground: oklch(0.7348 0 0);
@@ -96,7 +96,7 @@
    Sanara Studio — tokens extendidos
    ============================================= */
 :root {
-  --navy: oklch(0.186 0.048 264);
+  --navy: #081228;
   --navy-deep: oklch(0.120 0.030 264);
   --primary-bright: oklch(0.528 0.142 256);
   --primary-soft: oklch(0.952 0.030 256);
