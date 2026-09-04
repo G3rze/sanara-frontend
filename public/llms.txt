@@ -1,0 +1,21 @@
+# Sanara Studio — SaaS de Historia Clínica Electrónica para El Salvador
+
+> Plataforma nativa FHIR R4/R5 para clínicas, farmacias y laboratorios en El Salvador. Cumplimiento estricto del Decreto 144 (LEPD) y Decreto 260 (Delitos Informáticos).
+
+## Características Principales
+- Expediente clínico electrónico con cifrado Envelope (GCP KMS)
+- Interoperabilidad FHIR R4/R4B/R5 certificada con HAPI FHIR
+- Zero-Trust: MFA por acto clínico + claves efímeras WebCrypto
+- Multi-tenant con RBAC granular por organización y sucursal
+- Almacenamiento híbrido: BYTEA cifrado + Bucket WORM inmutable
+- Proxy de imágenes médicas con validación MIME y SHA-256
+
+## Cumplimiento Normativo
+- Decreto 144 (Ley Especial de Protección de Datos Personales)
+- Decreto 260 (Ley Especial contra Delitos Informáticos)
+- GDPR Art. 25, 32 (estándar complementario)
+- Norma Técnica 1616 (MINSAL)
+
+## Enlaces
+- [Inicio](https://sanara-studio.com/)
+- [FHIR Gateway](https://fhir.sanara-studio.com/)

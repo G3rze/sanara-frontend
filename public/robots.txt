@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Bloqueo de superficies de ataque y datos sensibles (Decreto 144 Art. 34.b + Decreto 260 Art. 12)
+Disallow: /fhir/
+Disallow: /api/
+Disallow: /internal/
+Disallow: /app/
+Disallow: /graphql
+Disallow: /auth/
+
+Sitemap: https://sanara-studio.com/sitemap.xml
