@@ -110,14 +110,27 @@ export class LandingPage {
   // ── Lifecycle ──
   constructor() {
     afterNextRender(() => {
+      this.clerk.load();
       this.initReveal();
       this.initCounters();
-      this.initViewCycle();
-      this.initKpiDrift();
-      this.initVitalCycle();
-      this.initLogFeed();
-      this.initSigCycle();
       this.barsOn.set(true);
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(() => {
+          this.initViewCycle();
+          this.initKpiDrift();
+          this.initVitalCycle();
+          this.initLogFeed();
+          this.initSigCycle();
+        }, { timeout: 3000 });
+      } else {
+        setTimeout(() => {
+          this.initViewCycle();
+          this.initKpiDrift();
+          this.initVitalCycle();
+          this.initLogFeed();
+          this.initSigCycle();
+        }, 2000);
+      }
     });
   }
 

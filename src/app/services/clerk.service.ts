@@ -1,18 +1,19 @@
 import { Injectable, signal } from '@angular/core';
-import { Clerk } from '@clerk/clerk-js';
 import { environment } from '../../environments/environment';
 
 export type WaitlistStep = 'email' | 'loading' | 'done' | 'error';
 
 @Injectable({ providedIn: 'root' })
 export class ClerkService {
-  private clerk?: Clerk;
+  private clerk: any;
 
   readonly step = signal<WaitlistStep>('email');
   readonly email = signal('');
   readonly error = signal<string | null>(null);
 
   async load(): Promise<void> {
+    if (this.clerk) return;
+    const { Clerk } = await import('@clerk/clerk-js');
     this.clerk = new Clerk(environment.clerkPublishableKey);
     await this.clerk.load();
   }
