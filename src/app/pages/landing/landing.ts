@@ -6,9 +6,6 @@ import {
   afterNextRender,
   inject,
 } from '@angular/core';
-import { HlmBadgeImports } from '@spartan-ng/helm/badge';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmCardImports } from '@spartan-ng/helm/card';
 import { HlmTabsImports } from '@spartan-ng/helm/tabs';
 import { ClerkService } from '../../services/clerk.service';
 
@@ -16,9 +13,6 @@ import { ClerkService } from '../../services/clerk.service';
   selector: 'app-landing-page',
   standalone: true,
   imports: [
-    HlmBadgeImports,
-    HlmButtonImports,
-    HlmCardImports,
     HlmTabsImports,
   ],
   templateUrl: './landing.html',
